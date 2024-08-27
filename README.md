@@ -1,37 +1,21 @@
-# Validate Data (row-by-row)
+# Data Validator
+## Techstack
+- apache spark 
+- apache airflow 
+- s3 
+- k8s 
+- postgresql 
 
-## Requirements
+## Feature 
+### Compare Data row-by-row
+using spark + k8s to handle autoscaling and parallel processing capability
 
-- python3.9
-- pip3
+- additional SQL based transformation 
 
-## Install Dependencies
+airflow for scheduled execution and tasks execution summary
 
-```bash 
-pip3 install -r req.txt 
-```
+### Generate test datasets
 
-## Validate Data
+using Faker API + spark to generate datasets based on DDL
 
-### Update connection strings
-
-update `src_connection_str` and `dest_connection_str` in `validate.py`
-
-### Execute validator
-```bash 
-export TABLE_NAME=""
-
-python3 "${TABLE_NAME}"
-```
-
-## Test command
-for mysql 
-```mysql
-CREATE TABLE TEST_GO.EMOJI_TABLE (
-    ID INT,
-    EMOJI_COLUMN LONGTEXT
-);
-ALTER TABLE TEST_GO.EMOJI_TABLE ADD PRIMARY KEY(id);
-
-update TEST_GO.EMOJI_TABLE set EMOJI_COLUMN = from_base64('VGVzdCDwn5iC') where id = 123;
-```
+stored in S3 for reusability
